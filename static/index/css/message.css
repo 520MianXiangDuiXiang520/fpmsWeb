@@ -1,0 +1,29 @@
+.state {
+    float: right;
+    font-size: 9px;
+    color: #8f8f8f;
+}
+
+.stateDiv {
+    padding-right: 10px;
+}
+
+#t{
+    font-size: 20px;
+    margin: 0;
+}
+
+#send{
+    font-size: 11px;
+    color: #8f8f8f;
+    text-align: center;
+    margin: 0;
+  }
+
+.messageButton{
+    float: right;
+}
+
+.rightLi{
+    padding-right: 10px;
+}

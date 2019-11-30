@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./static/dependence/loginAndRegister/css/diquick.css">
+    <script src="./static/dependence/vue/vue.js"></script>
+    <script src="./static/dependence/reqwest/reqwest.js"></script>
+    <script src="./static/dependence/loginAndRegister/js/diquick.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>个人中心</title>
+</head>
+<body>
+
+<div id="app">
+    <table class="table">
+        <!-- On cells (`td` or `th`) -->
+        <tr>
+            <th class="active">序号</th>
+            <th class="success">项目</th>
+            <th class="warning">内容</th>
+        </tr>
+        <tr>
+            <td class="active">1</td>
+            <td class="success">用户名</td>
+            <td class="warning">
+                {{username}}
+            </td>
+        </tr>
+        <tr>
+            <td class="active">2</td>
+            <td class="success">邮箱</td>
+            <td class="warning">
+                <input type="text" :placeholder="email" name="ChangeEmail" v-model="ChangeEmail">
+            </td>
+        </tr>
+        <tr>
+            <td class="active">3</td>
+            <td class="success">性别</td>
+            <td class="warning">
+                <input type="text" :placeholder="sex" name="changeSex" v-model="changeSex">
+            </td>
+        </tr>
+        <tr>
+            <td class="active">4</td>
+            <td class="success">电话</td>
+            <td class="warning">
+                <input type="text" :placeholder="telephone" :name="changeTelephone" v-model="changeTelephone">
+            </td>
+        </tr>
+    </table>
+    <td class="info">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" @click="changeInfo" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-ok"> 修改</span>
+        </button>
+    </td>
+
+</div>
+<script src="viewModel/userinfo.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./static/dependence/loginAndRegister/css/diquick.css">
+    <link rel="stylesheet" href="./static/index/css/message.css">
+    <script src="./static/dependence/vue/vue.js"></script>
+    <script src="./static/dependence/reqwest/reqwest.js"></script>
+    <script src="./static/dependence/loginAndRegister/js/diquick.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>消息</title>
+</head>
+<body>
+<div id="app">
+    <div id="message">
+        <ul class="timeline">
+            <li v-for="message in messages">
+                <i :data-mark="message.send_time" class="bg-orange active"></i>
+                <div class="panel">
+                    <div class="title">
+                        <p id="t">{{message.title}}</p>
+                        <p id="send">发件人：{{message.send_name}}</p>
+                    </div>
+                    <div class="content">
+                        <p>{{message.text}}</p>
+                        <div class="messageButton" v-if="message.type===2">
+                            <ul class="box-array list2">
+                                <li class="rightLi">
+                                    <button type="button" class="btn bg-green" @click="agreeApplication(0, message.receive_id, message.send_id)">同意</button>
+                                </li>
+                                <li class="rightLi"><button type="button" class="btn bg-gray" @click="agreeApplication(0, message.receive_id, message.send_id)">拒绝</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="state">
+                    <ul class="box-array list3">
+                        <li>
+                            <div class="stateDiv">
+                                <div v-if="message.state===1" @click="changeState(message.id, 3)">
+                                    <span class="glyphicon glyphicon-star" ></span>
+                                    <p>UNSTAR</p>
+                                </div>
+
+                                <div v-else @click="changeState(message.id, 1)">
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <p>STAR</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="stateDiv" v-if="message.state!=2" @click="changeState(message.id, 2)">
+                                <span class="glyphicon glyphicon-ok" ></span>
+                                <p>已读</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="stateDiv" @click="deleteMessage(message.id)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <p>删除</p>
+                            </div>
+                        </li>
+                    </ul>
+                    {{messageID}}
+                </div>
+
+            </li>
+            <li>
+                <i data-mark="2019-01-01 14:22:11" class="bg-blue"></i>
+                <p>Content B</p>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<script src="viewModel/message.js"></script>
+</body>
+</html>

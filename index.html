@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./static/index/image/icon/page_login.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="./static/index/css/index.css">
+    <link rel="stylesheet" href="./static/dependence/loginAndRegister/css/diquick.css">
+    <script src="./static/dependence/vue/vue.js"></script>
+    <script src="./static/dependence/reqwest/reqwest.js"></script>
+    <script src="./static/dependence/loginAndRegister/js/diquick.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Index</title>
+</head>
+<body>
+<div id="app">
+    <div class="collapse navbar-collapse" id="top-navbar-1">
+        <ul class="nav navbar-nav navbar-left" v-if="username">
+            <li data-open-drawer="element1">
+                <a href="javascript:;">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    FPMS
+                </a>
+            </li>
+            <div id="element1" class="drawer left">
+                <div class="content" data-scrollbar>
+                    <h6>Benefits of registration include:</h6>
+                    <ol class="basic">
+                        <li>Exclusive offers & sneak peeks</li>
+                        <li>Instant order tracking</li>
+                        <li>Award-winning customer service</li>
+                    </ol>
+                    <button class="btn xs" data-close-drawer>Close</button>
+                </div>
+            </div>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" v-if="username">
+                <li @click="innerMessage">
+                    <a href="javascript:;">
+                        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>  消息
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="dropmenu">
+                            <span>{{username}}</span>
+                            <ul class="bg-blue c-white">
+                                <li @click="innerUserInfo"><span class="glyphicon glyphicon-user"></span> 个人中心</li>
+                                <li @click="innerFamily"><span class="glyphicon glyphicon-home"></span> 我的家庭</li>
+                                <li @click="logout"><span class="glyphicon glyphicon-log-out"></span> 退出登录</li>
+                            </ul>
+                        </div>
+                    </a>
+
+                </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" v-else>
+            <li @click="tologin"><a href="javascript:;"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>  登录</a></li>
+            <li @click="toregister"><a href="javascript:;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  注册</a></li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <h1>展示个人</h1>
+    </div>
+
+<!--    <div id="footer">-->
+
+<!--        <div class="copyright">-->
+<!--            &copy;2019- -->
+<!--            <script>-->
+<!--                document.write(new Date().getFullYear())-->
+<!--            </script> Power By JunBao-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+</div>
+<script src="viewModel/index.js"></script>
+</body>
+</html>
