@@ -41,9 +41,12 @@ let vm = new Vue({
                         self.username = resp['username'];
                         self.uesrid = resp['id'];
                         self.userToken = token;
-                        self.family = resp['family1']
+                        self.family = resp['family1'];
+                        let main = document.getElementById('main');
+                        main.innerHTML = ("<iframe frameborder = 0 width = 100% height=100%" +
+                            " src = 'http://127.0.0.1/FPMS/data.html?token="+ token +"' ></iframe >")
                     }
-                })
+                });
             }
         },
         tologin() {
@@ -51,7 +54,7 @@ let vm = new Vue({
              * 重定向到登录页面
              * @type {string}
              */
-            window.location.href = "../login.html"
+            window.location.href = "http://127.0.0.1/fpms/login.html"
         },
 
         toregister() {
@@ -59,7 +62,7 @@ let vm = new Vue({
              * 重定向到注册页面
              * @type {string}
              */
-            window.location.href = "../register.html"
+            window.location.href = "http://127.0.0.1/fpms/register.html"
         },
 
         innerUserInfo() {
@@ -117,9 +120,12 @@ let vm = new Vue({
             let main = document.getElementById('main');
             main.innerHTML = ("<iframe frameborder = 0 width = 100% height=100%" +
                 " src = 'http://127.0.0.1/fpms/family.html?token="+ this.userToken +"' ></iframe >")
+        },
+        innerData() {
+
         }
     },
-    computed: {
+    computed(){
 
     },
     mounted(){
