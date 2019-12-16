@@ -19,7 +19,14 @@ let vm = new Vue({
         get_income_projects: [],
         get_income_money: [],
         get_expends_projects: [],
-        get_expends_money: []
+        get_expends_money: [],
+        // 表单提交
+        bill_type: 0,
+        money: 0,
+        remarks: "", // 备注
+        time: "",
+        is_add_to_family: false,
+        concrete_type: ""
 
     },
     methods: {
@@ -35,6 +42,40 @@ let vm = new Vue({
                     , contentType: 'application/json'
                     , error: function (err) {
                         console.log(this.url + "请求失败")
+                    }
+                    , success: function (resp) {
+                        self.get_all_income = resp['data']['all_income'];
+                        self.get_all_expends = resp['data']['all_expend'];
+                        self.get_income_projects = resp['data']['income_projects'];
+                        self.get_income_money = resp['data']['income_money'];
+                        self.get_expends_projects = resp['data']['expend_projects'];
+                        self.get_expends_money = resp['data']['expend_money'];
+                        self.incomeView();
+                        self.expendsView();
+                        self.income_expendsView();
+                    }
+                })
+            }
+        },
+
+        postBill() {
+            let self = this;
+            let token = getQueryVariable('token');
+            this.userToken = token;
+            let addFamily = 0;
+            if(self.is_add_to_family)
+                addFamily = 1;
+            if (token) {
+                reqwest({
+                    url: 'http://127.0.0.1:8000/api/v1/bill/Income/?token=' + token
+                    , method: "POST"
+                    , type: 'json'
+                    , data: {bill_type: self.bill_type,
+                        money: self.money,
+                        is_add_to_family: addFamily,
+                        remarks: self.remarks,
+                        time: self.time,
+                        concrete_type: self.concrete_type
                     }
                     , success: function (resp) {
                         self.get_all_income = resp['data']['all_income'];
