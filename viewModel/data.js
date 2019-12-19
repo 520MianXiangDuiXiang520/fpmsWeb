@@ -11,6 +11,19 @@ function getQueryVariable(variable)
     return false;
 }
 
+laydate.render({
+    elem: '#test1'
+    ,type: 'datetime'
+    ,format: 'yyyy-MM-dd HH:mm:ss'
+    ,change:function(value, date, endDate){
+        vm.time=value;
+    }
+    ,trigger: 'click'
+    ,done(value, date, endDate) {
+        vm.time=value;
+    }
+});
+
 let vm = new Vue({
     el: '#app',
     data: {
@@ -78,15 +91,17 @@ let vm = new Vue({
                         concrete_type: self.concrete_type
                     }
                     , success: function (resp) {
-                        self.get_all_income = resp['data']['all_income'];
-                        self.get_all_expends = resp['data']['all_expend'];
-                        self.get_income_projects = resp['data']['income_projects'];
-                        self.get_income_money = resp['data']['income_money'];
-                        self.get_expends_projects = resp['data']['expend_projects'];
-                        self.get_expends_money = resp['data']['expend_money'];
-                        self.incomeView();
-                        self.expendsView();
-                        self.income_expendsView();
+                        if(resp['code']===200) {
+                            alert("添加成功！");
+                            self.get_all_income = resp['data']['all_income'];
+                            self.get_all_expends = resp['data']['all_expend'];
+                            self.get_income_projects = resp['data']['income_projects'];
+                            self.get_income_money = resp['data']['income_money'];
+                            self.get_expends_projects = resp['data']['expend_projects'];
+                            self.get_expends_money = resp['data']['expend_money'];
+                        } else {
+                            alert(resp['msg'])
+                        }
                     }
                 })
             }
