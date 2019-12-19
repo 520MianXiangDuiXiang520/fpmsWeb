@@ -116,6 +116,12 @@ let vm = new Vue({
                 " src = 'http://127.0.0.1/fpms/message.html?token="+ this.userToken +"' ></iframe >")
         },
 
+        innerMoneyManage() {
+            let main = document.getElementById('main');
+            main.innerHTML = ("<iframe frameborder = 0 width = 100% height=100%" +
+                " src = 'http://127.0.0.1/fpms/moneyManage.html?token="+ this.userToken +"' ></iframe >")
+        },
+
         innerFamily() {
             let main = document.getElementById('main');
             main.innerHTML = ("<iframe frameborder = 0 width = 100% height=100%" +

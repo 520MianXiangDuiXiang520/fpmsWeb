@@ -36,6 +36,7 @@
     </div>
     <div id="family-info" v-else>
         <div><h1>{{familyData.family_name}}</h1></div>
+        <h2>家庭成员</h2>
         <ul class="box-array list4">
             <li>{{familyData.family_member.parent1}}</li>
             <li>{{familyData.family_member.parent2}}</li>
@@ -46,7 +47,6 @@
             <li>{{familyData.family_member.members7}}</li>
             <li>{{familyData.family_member.members8}}</li>
         </ul>
-        {{familyData}}
     </div>
 </div>
 <script src="viewModel/family.js"></script>

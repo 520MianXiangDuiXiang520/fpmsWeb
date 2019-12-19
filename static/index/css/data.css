@@ -22,3 +22,11 @@
 .row {
     font-size: 15px;
 }
+
+#add_bill {
+    padding-bottom: 15px;
+}
+
+#bill_detail {
+    padding-top: 30px;
+}

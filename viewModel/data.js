@@ -39,7 +39,9 @@ let vm = new Vue({
         remarks: "", // 备注
         time: "",
         is_add_to_family: false,
-        concrete_type: ""
+        concrete_type: "",
+        income_bills: [],
+        expend_bills: []
 
     },
     methods: {
@@ -49,10 +51,41 @@ let vm = new Vue({
             this.userToken = token;
             if (token) {
                 reqwest({
+                    url: 'http://127.0.0.1:8000/api/v1/bill/Income/?token=' + token
+                    , method: 'get'
+                    , error(err) {
+                        alert("请求失败！")
+                    }
+                    , success(resp) {
+                        console.log("请求成功！");
+                        if(resp['code'] === 200) {
+                            self.income_bills = resp['data']
+                        } else {
+                            alert(resp['msg'])
+                        }
+
+                    }
+                });
+                reqwest({
+                    url: 'http://127.0.0.1:8000/api/v1/bill/expend/?token=' + token
+                    , method: 'get'
+                    , error(err) {
+                        alert("请求失败！")
+                    }
+                    , success(resp) {
+                        console.log("请求成功！");
+                        if(resp['code'] === 200) {
+                            self.expend_bills = resp['data']
+                        } else {
+                            alert(resp['msg'])
+                        }
+
+                    }
+                });
+                reqwest({
                     url: 'http://127.0.0.1:8000/api/v1/bill/data/?token=' + token
                     , type: 'json'
                     , method: 'get'
-                    , contentType: 'application/json'
                     , error: function (err) {
                         console.log(this.url + "请求失败")
                     }

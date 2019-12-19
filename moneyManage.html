@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/rough-viz@1.0.5"></script>
+    <link rel="stylesheet" href="./static/dependence/loginAndRegister/css/diquick.css">
+    <link rel="stylesheet" href="./static/index/css/data.css">
+    <script src="./static/dependence/vue/vue.js"></script>
+    <script src="./static/dependence/reqwest/reqwest.js"></script>
+    <script src="./static/dependence/loginAndRegister/js/diquick.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="static/dependence/layDate-v5.0.9/layDate-v5.0.9/laydate/laydate.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="static/dependence/bootstrap/min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./static/dependence/bootstrap/min.js"></script>
+    <title>资金管理</title>
+</head>
+<body>
+<div id="app">
+    <h1>资金管理</h1>
+    <div class="row">
+        <div class="col-md-6" id="jie">
+            <ul class="form ratio100">
+                <li>
+                    <span>向谁借款？</span>
+                    <div><input type="text" v-model="who"></div>
+                </li>
+                <li>
+                    <span>借多少？</span>
+                    <div><input type="text" v-model="money"></div>
+                </li>
+
+                <li>
+                    <span>还款日期？</span>
+                    <div>
+                        <div>
+                            <input type="text" id="test1" v-model="time">
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="tc"><button type="button" class="btn" @click="borrow">借款</button></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6" id="huan">
+
+        </div>
+    </div>
+</div>
+<script src="./viewModel/money.js"></script>
+</body>
+</html>
