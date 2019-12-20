@@ -24,7 +24,7 @@ let app = new Vue({
                             console.log("ok")
                         } else {
                             alert('登录失败');
-                            window.location.href = "../login.html";
+                            window.location.href = "./login.html";
                         }
 
                     } 
@@ -33,7 +33,7 @@ let app = new Vue({
         },
 
         toRegister() {
-            window.location.href="../register.html"
+            window.location.href="./register.html"
         }
     },
     computed: {
