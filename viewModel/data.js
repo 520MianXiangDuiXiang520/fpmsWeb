@@ -41,7 +41,8 @@ let vm = new Vue({
         is_add_to_family: false,
         concrete_type: "",
         income_bills: [],
-        expend_bills: []
+        expend_bills: [],
+        no_data: false
 
     },
     methods: {
@@ -90,15 +91,20 @@ let vm = new Vue({
                         console.log(this.url + "请求失败")
                     }
                     , success: function (resp) {
-                        self.get_all_income = resp['data']['all_income'];
-                        self.get_all_expends = resp['data']['all_expend'];
-                        self.get_income_projects = resp['data']['income_projects'];
-                        self.get_income_money = resp['data']['income_money'];
-                        self.get_expends_projects = resp['data']['expend_projects'];
-                        self.get_expends_money = resp['data']['expend_money'];
-                        self.incomeView();
-                        self.expendsView();
-                        self.income_expendsView();
+                        if(resp['code'] === 200) {
+                            self.get_all_income = resp['data']['all_income'];
+                            self.get_all_expends = resp['data']['all_expend'];
+                            self.get_income_projects = resp['data']['income_projects'];
+                            self.get_income_money = resp['data']['income_money'];
+                            self.get_expends_projects = resp['data']['expend_projects'];
+                            self.get_expends_money = resp['data']['expend_money'];
+                            self.incomeView();
+                            self.expendsView();
+                            self.income_expendsView();
+
+                        } else if(resp['code'] === 201) {
+                            self.no_data = true;
+                        }
                     }
                 })
             }
@@ -142,6 +148,7 @@ let vm = new Vue({
 
         incomeView() {
             let self = this;
+
             new roughViz.Bar(
                 {
                     element: '#vis0',
@@ -161,6 +168,7 @@ let vm = new Vue({
 
         expendsView() {
             let self = this;
+            // alert("1112")
             new roughViz.Bar(
                 {
                     element: '#vis1',

@@ -16,6 +16,7 @@ let vm = new Vue({
         userToken: '',
         messages: [],
         messageID: '',
+
     },
     methods: {
         getinfo() {
@@ -81,6 +82,35 @@ let vm = new Vue({
                 , success: function (resp) {
                     self.messages = resp;
                     console.log(self.messages)
+                }
+            })
+        },
+
+        borrow(is_agree, receive_id, send_id, text) {
+            let self = this;
+            let id = text.match(/【\d*】/g)[0];
+            id = id.replace("【", "");
+            id = id.replace("】", "");
+            reqwest({
+                url: 'http://127.0.0.1:8000/api/v1/borrow_money/borrow/?token=' + self.userToken
+                , type: 'json'
+                , method: 'put'
+                , data: {
+                    borrow_id: id,
+                    receive_id: receive_id,
+                    send_id: send_id,
+                    is_agree: is_agree
+                }
+                , contentType: 'application/json'
+                , error: function (err) {
+                    console.log(this.url + "请求失败")
+                }
+                , success: function (resp) {
+                    if(resp['code']===200) {
+                        alert("已同意！")
+                    } else {
+                        alert(resp['msg'])
+                    }
                 }
             })
         },

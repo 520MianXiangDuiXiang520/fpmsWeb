@@ -40,6 +40,14 @@
                                 <li class="rightLi"><button type="button" class="btn bg-gray" @click="agreeApplication(1, message.receive_id, message.send_id)">拒绝</button></li>
                             </ul>
                         </div>
+                        <div class="messageButton" v-if="message.type===3">
+                            <ul class="box-array list2">
+                                <li class="rightLi">
+                                    <button type="button" class="btn bg-green" @click="borrow(0, message.receive_id, message.send_id, message.text)">同意</button>
+                                </li>
+                                <li class="rightLi"><button type="button" class="btn bg-gray" @click="borrow(1, message.receive_id, message.send_id, message.text)">拒绝</button></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="state">

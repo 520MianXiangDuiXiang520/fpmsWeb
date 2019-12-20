@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://unpkg.com/rough-viz@1.0.5"></script>
+    <script src="./static/dependence/unpkg/roughviz.js"></script>
     <link rel="stylesheet" href="./static/dependence/loginAndRegister/css/diquick.css">
     <link rel="stylesheet" href="./static/index/css/data.css">
     <script src="./static/dependence/vue/vue.js"></script>
@@ -169,8 +169,8 @@
                                             <div class="col-md-2" @click="concrete_type='护肤'">
                                                 <span class="glyphicon glyphicon-tint" aria-hidden="true">护肤</span>
                                             </div>
-                                            <div class="col-md-2" @click="concrete_type='维修'">
-                                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">维修</span>
+                                            <div class="col-md-2" @click="concrete_type='储蓄'">
+                                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">储蓄</span>
                                             </div>
                                             <div class="col-md-2" @click="concrete_type='电子'">
                                                 <span class="glyphicon glyphicon-flash" aria-hidden="true">电子</span>
@@ -194,67 +194,78 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div id="vis0">
+    <div v-if="no_data">
+        <div class="media left">
+            <div class="img"><img src="./static/index/image/img/empty.png" alt="empty" style="width: 90px;height: 90px"></div>
+            <div class="content">
+                <h4>空账单</h4>
+                <p>您还没有记过帐呢, 点击右上角开始记账吧！</p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div id="vis1">
+
+    </div>
+    <div id="has_data" v-else>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="vis0">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="vis1">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="vis2">
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div id="vis2">
-            </div>
+
+        <div id="bill_detail">
+            <h2>收入账单</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th class="count">序号</th>
+                    <th class="type">收入类型</th>
+                    <th class="money">金额</th>
+                    <th class="create_time">创建时间</th>
+                    <th class="remarks">备注</th>
+                </tr>
+
+                <tr class="success" v-for="(bill,index,i) in income_bills">
+                    <td class="count">{{index}}</td>
+
+                    <td class="type">{{bill['concrete_type']}}</td>
+                    <td class="money">{{bill['money']}}</td>
+                    <td class="create_time">{{bill['time']}}</td>
+                    <td class="remarks">{{bill['remarks']}}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div id="expend_detail">
+            <h2>支出账单</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th class="count">序号</th>
+                    <th class="type">支出类型</th>
+                    <th class="money">金额</th>
+                    <th class="create_time">创建时间</th>
+                    <th class="remarks">备注</th>
+                </tr>
+
+                <tr class="success" v-for="(bill,index,i) in expend_bills">
+                    <td class="count">{{index}}</td>
+
+                    <td class="type">{{bill['concrete_type']}}</td>
+                    <td class="money">{{bill['money']}}</td>
+                    <td class="create_time">{{bill['time']}}</td>
+                    <td class="remarks">{{bill['remarks']}}</td>
+                </tr>
+
+            </table>
         </div>
     </div>
-
-    <div id="bill_detail">
-        <h2>收入账单</h2>
-        <table class="table table-striped">
-            <tr>
-                <th class="count">序号</th>
-                <th class="type">收入类型</th>
-                <th class="money">金额</th>
-                <th class="create_time">创建时间</th>
-                <th class="remarks">备注</th>
-            </tr>
-
-            <tr class="success" v-for="(bill,index,i) in income_bills">
-                <td class="count">{{index}}</td>
-
-                <td class="type">{{bill['concrete_type']}}</td>
-                <td class="money">{{bill['money']}}</td>
-                <td class="create_time">{{bill['time']}}</td>
-                <td class="remarks">{{bill['remarks']}}</td>
-            </tr>
-
-        </table>
-    </div>
-
-    <div id="expend_detail">
-        <h2>支出账单</h2>
-        <table class="table table-striped">
-            <tr>
-                <th class="count">序号</th>
-                <th class="type">支出类型</th>
-                <th class="money">金额</th>
-                <th class="create_time">创建时间</th>
-                <th class="remarks">备注</th>
-            </tr>
-
-            <tr class="success" v-for="(bill,index,i) in expend_bills">
-                <td class="count">{{index}}</td>
-
-                <td class="type">{{bill['concrete_type']}}</td>
-                <td class="money">{{bill['money']}}</td>
-                <td class="create_time">{{bill['time']}}</td>
-                <td class="remarks">{{bill['remarks']}}</td>
-            </tr>
-
-        </table>
-    </div>
-
 
 
 </div>

@@ -9,25 +9,12 @@ function getQueryVariable(variable)
     return false;
 }
 
-laydate.render({
-    elem: '#test1'
-    ,type: 'date'
-    ,format: 'yyyy-MM-dd'
-    ,change:function(value, date, endDate){
-        vm.pay_back_date=value;
-    }
-    ,trigger: 'click'
-    ,done(value, date, endDate) {
-        vm.pay_back_date=value;
-    }
-});
-
 let vm = new Vue({
     el: "#app",
     data: {
         who: 0,
         money: 0,
-        pay_back_date: ""
+        pay_back_date: "0000-00-00"
     },
     methods: {
         borrow() {
