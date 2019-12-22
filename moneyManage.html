@@ -43,8 +43,85 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-6" id="huan">
+        <div class="col-md-6" id="cong">
+            <ul class="form ratio100">
+                <li>
+                    <span>选择银行</span>
+                    <div style="font-size: 10px; color: #8f8f8f">
+                        <select class="line" v-model="bank_name">
+                            <option>中国银行</option>
+                            <option value="text1">中国建设银行</option>
+                            <option value="text2">中国工商银行</option>
+                            <option value="text3">邮政储蓄银行</option>
+                            <option value="text3">中国农业银行</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <span>存多少？</span>
+                    <div><input type="text" v-model="bank_money"></div>
+                </li>
 
+                <li>
+                    <span>存到什么时候？</span>
+                    <div>
+                        <input type="date" id="test2" v-model="bank_data">
+                    </div>
+                </li>
+                <li>
+                    <div @click="!is_add_to_family">
+                        <label>
+                            <input type="checkbox"> 同步到家庭账单？
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="tc"><button type="button" class="btn" @click="bank">存款</button></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="borrow_bill" v-if="borrow_bills.length !=0">
+<!--        欠债账单-->
+<!--        ['id', 'money', 'deadline', 'borrower', 'status', 'lender']-->
+        <table class="table table-hover">
+            <tr>
+                <th class="active">账单号</th>
+                <th class="success">金额</th>
+                <th class="warning">债主</th>
+                <th class="danger">状态</th>
+                <th class="info">截止时间</th>
+                <th class="success">还钱</th>
+            </tr>
+            <tr v-for="bill in borrow_bills">
+                <td class="active">{{bill.id}}</td>
+                <td class="success">{{bill.money}}</td>
+                <td class="warning">{{bill.lender}}</td>
+                <td class="danger">{{bill.status}}</td>
+                <td class="info">{{bill.deadline}}</td>
+                <td class="active">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="还款金额" v-model="borrow_money">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-success" @click="payback(bill.lender_id, bill.id)">还钱</button>
+                        </div>
+                    </div>
+
+
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div v-else>
+        <div class="media left">
+            <div class="img"><img src="./static/index/image/img/good.png" alt="empty" style="width: 90px;height: 90px"></div>
+            <div class="content">
+                <h4>继续保持</h4>
+                <p>您到目前为止还没借过钱，继续保持啊~</p>
+            </div>
         </div>
     </div>
 </div>
